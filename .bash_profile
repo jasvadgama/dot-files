@@ -14,7 +14,9 @@ alias hosts="subl /etc/hosts"
 alias vhosts="subl /etc/apache2/extra/httpd-vhosts.conf"
 
 # FINDER
-# show all files
+# restart Finder
+alias restartfinder="killall Finder"
+# show hidden files
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE'
-# show non-hidden files
+# hide 'hidden' files
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles FALSE'
