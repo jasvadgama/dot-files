@@ -22,9 +22,11 @@ alias vhosts="subl /etc/apache2/extra/httpd-vhosts.conf"
 function sf {
 	defaults write com.apple.finder AppleShowAllFiles TRUE
 	killall Finder
+	echo "Files now showing"
 }
 # hide hidden files
 function hf {
 	defaults write com.apple.finder AppleShowAllFiles FALSE
 	killall Finder
+	echo "Files now hidden"
 }
