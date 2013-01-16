@@ -7,10 +7,33 @@ alias c="clear"
 alias ll="ls -alh"
 
 # quick directory links
+alias ~="cd ~"
 alias dev="cd ~/Sites/Dev"
 alias github="cd ~/Sites/Github"
 
-# export git repo
+# github
+# git get (pull)
+alias gg="git pull"
+alias gb="git branch"
+# create branch
+function gcb {
+	git branch $@
+}
+# switch branch
+function gsb {
+	git checkout $@
+}
+alias gs="git status"
+alias ga="git add -A"
+# commit all with message
+function gc {
+	git commit -am \"$@\"
+}
+# push with optional branch location
+function gp {
+	git push $@
+}
+# export zipfile
 alias gitzip="git archive --format zip --output project.zip master"
 
 # apache config
