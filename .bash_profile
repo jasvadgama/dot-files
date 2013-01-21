@@ -27,7 +27,7 @@ alias gs="git status"
 alias ga="git add -A"
 # commit all with message
 function gc {
-	git commit -am \"$@\"
+	git commit -am "${1}"
 }
 # push with optional branch location
 function gp {
