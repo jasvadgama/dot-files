@@ -8,8 +8,9 @@ alias ll="ls -alh"
 
 # quick directory links
 alias ~="cd ~"
-alias dev="cd ~/Sites/Dev"
-alias github="cd ~/Sites/Github"
+alias Dev="cd ~/Sites/Dev"
+alias Github="cd ~/Sites/Github"
+alias Projects="cd ~/Sites/Projects"
 
 # github
 # git get (pull)
@@ -35,6 +36,8 @@ function gp {
 }
 # export zipfile
 alias gitzip="git archive --format zip --output project.zip master"
+# colourized git log
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # apache config
 alias hosts="subl /etc/hosts"
