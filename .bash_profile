@@ -1,8 +1,7 @@
 # TERMINAL APPEARANCE
 export PS1="\u@\W: "
 
-# ALIASES
-# file system
+# QUICK TASKS
 alias c="clear"
 alias ll="ls -lah"
 
@@ -13,39 +12,44 @@ alias github="cd ~/Sites/Github"
 alias projects="cd ~/Sites/Projects"
 
 # GITHUB
-# git get (pull)
-alias gg="git pull"
-alias gb="git branch"
-# create branch - % git branch -b new_branch_name branch_to_clone
-function gcb {
-    git branch -b ${1} ${2}
+# git get (pull) - % git pull (remote branch)
+function gg {
+    git pull $@
 }
-# switch branch
-function gsb {
-    git checkout $@
-}
+# list changes
 alias gs="git status"
+# add all files
 alias ga="git add -A"
 # commit with message
 function gc {
     git commit -m "${1}"
 }
-# push with optional branch location
+# push to remote - % git push remote branch
 function gp {
     git push $@
 }
 # tag a branch - % git tag -a 1.0 -m "making a release"
 function gt {
-    git tag -a ${1} -m "${2}"
+    git tag -a $1 -m "${2}"
 }
-# export zipfile - % git archive --format zip --output project.zip branch_name
+# list local branches
+alias gb="git branch"
+# create and switch to a new branch - % git branch -b new_branch source_branch
+function gcb {
+    git branch -b $@
+}
+# switch branch - % git checkout branch
+function gsb {
+    git checkout $@
+}
+# export zipfile - % git archive --format zip --output filename.zip branch
 function gitzip {
-    git archive --format zip --output ${1}.zip ${2}
+    git archive --format zip --output $1.zip $2
 }
 # colourized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-# apache config
+# APACHE CONFIG
 alias hosts="subl /etc/hosts"
 alias vhosts="subl /etc/apache2/extra/httpd-vhosts.conf"
 
