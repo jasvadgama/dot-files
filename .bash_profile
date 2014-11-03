@@ -1,6 +1,15 @@
 # TERMINAL APPEARANCE
 export PS1="\u@\W: "
 
+# TERMINAL TOOLS
+# bulk rename files - bulkrename extension search replacement
+function bulkrename {
+    for file in *$1
+    do
+        mv $file "${file/$2/$3}"
+    done
+}
+
 # ALIASES
 # file system
 alias c="clear"
@@ -18,7 +27,7 @@ alias gg="git pull"
 alias gb="git branch"
 # create branch - % git branch -b new_branch_name branch_to_clone
 function gcb {
-    git branch -b ${1} ${2}
+    git checkout -b ${1} ${2}
 }
 # switch branch
 function gsb {
