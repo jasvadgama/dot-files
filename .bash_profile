@@ -10,8 +10,7 @@ function bulkrename {
     done
 }
 
-# ALIASES
-# file system
+# QUICK TASKS
 alias c="clear"
 alias ll="ls -lah"
 
@@ -22,39 +21,44 @@ alias github="cd ~/Sites/Github"
 alias projects="cd ~/Sites/Projects"
 
 # GITHUB
-# git get (pull)
-alias gg="git pull"
+# list changes
+alias gs="git status"
+# add all files
+alias ga="git add -A"
+# list local branches
 alias gb="git branch"
-# create branch - % git branch -b new_branch_name branch_to_clone
+# colourized git log
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# create and switch to branch - % gcb new_branch_name branch_to_clone
 function gcb {
     git checkout -b ${1} ${2}
 }
-# switch branch
+# switch branch - % gsb develop
 function gsb {
     git checkout $@
 }
-alias gs="git status"
-alias ga="git add -A"
-# commit with message
+# git get (pull) - % git pull remote branch
+function gg {
+    git pull $@
+}
+# commit with message - % gc "initial commit"
 function gc {
     git commit -m "${1}"
 }
-# push with optional branch location
+# push to remote - % git push remote branch
 function gp {
     git push $@
 }
-# tag a branch - % git tag -a 1.0 -m "making a release"
+# tag a branch - % gt version "making a release"
 function gt {
-    git tag -a ${1} -m "${2}"
+    git tag -a $1 -m "${2}"
 }
-# export zipfile - % git archive --format zip --output project.zip branch_name
+# export zipfile - % gitgitzip filename branch
 function gitzip {
-    git archive --format zip --output ${1}.zip ${2}
+    git archive --format zip --output $1.zip $2
 }
-# colourized git log
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-# apache config
+# APACHE CONFIG
 alias hosts="subl /etc/hosts"
 alias vhosts="subl /etc/apache2/extra/httpd-vhosts.conf"
 
