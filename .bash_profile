@@ -26,7 +26,7 @@ function gc {
 }
 # push to remote - % git push remote branch
 function gp {
-    git push $@
+    git push origin `git rev-parse --abbrev-ref HEAD`
 }
 # tag a branch - % git tag -a 1.0 -m "making a release"
 function gt {
