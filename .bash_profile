@@ -1,15 +1,6 @@
 # TERMINAL APPEARANCE
 export PS1="\u@\W: "
 
-# TERMINAL TOOLS
-# bulk rename files - bulkrename extension search replacement
-function bulkrename {
-    for file in *$1
-    do
-        mv $file "${file/$2/$3}"
-    done
-}
-
 # QUICK TASKS
 alias c="clear"
 alias ll="ls -lah"
@@ -20,43 +11,93 @@ alias dev="cd ~/Sites/Dev"
 alias github="cd ~/Sites/Github"
 alias projects="cd ~/Sites/Projects"
 
+# ARCHIVES
+# create a new zip archive - % zipup example.zip file1 file2 file3
+function zipup {
+    ARCHIVE=$1
+    shift;
+    FILES=$@
+    tar -cvzf $ARCHIVE $FILES
+}
+# unzip an archive - % unzip archive.zip
+function unzip {
+    tar -xvzf $1
+}
+
+# TERMINAL TOOLS
+# bulk rename files - bulkrename extension search replacement
+function bulkrename {
+    for file in *$1
+    do
+        mv $file "${file/$2/$3}"
+    done
+}
+
 # GITHUB
+# git get (pull) - % git pull [remote branch]
+function gg {
+    git pull $@
+}
 # list changes
 alias gs="git status"
 # add all files
 alias ga="git add -A"
-# list local branches
-alias gb="git branch"
-# colourized git log
-alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# create and switch to branch - % gcb new_branch_name branch_to_clone
-function gcb {
-    git checkout -b ${1} ${2}
-}
-# switch branch - % gsb develop
-function gsb {
-    git checkout $@
-}
-# git get (pull) - % git pull remote branch
-function gg {
-    git pull $@
-}
-# commit with message - % gc "initial commit"
+# commit with message
 function gc {
     git commit -m "${1}"
 }
-# push to remote - % git push remote branch
+# push to remote - % git push [-r remote] [-b branch]
 function gp {
-    git push $@
+    # grab the flags
+    while getopts ":r::b:" opt; do
+        case $opt in
+            r)
+                r=$OPTARG
+                ;;
+            b)
+                b=$OPTARG
+                ;;
+        esac
+    done
+
+    # if -r is not defined
+    if [ -z "${r}" ]; then
+        # default to origin
+        r="origin"
+    fi
+
+    # if -b is not defined
+    if [ -z "${b}" ]; then
+        # default to the current branch
+        b=$(git symbolic-ref --short -q HEAD)
+    fi
+
+    git push $r $b
+
+    # reset the vars to empty otherwise they persist
+    r=""
+    b=""
 }
-# tag a branch - % gt version "making a release"
+# tag a branch - % git tag -a 1.0 -m "making a release"
 function gt {
     git tag -a $1 -m "${2}"
 }
-# export zipfile - % gitgitzip filename branch
+# list local branches
+alias gb="git branch"
+# create and switch to a new branch - % git branch -b new_branch source_branch
+function gcb {
+    git branch -b $@
+}
+# switch branch - % git checkout branch
+function gsb {
+    git checkout $@
+}
+# export zipfile - % git archive --format zip --output filename.zip branch
 function gitzip {
     git archive --format zip --output $1.zip $2
 }
+# colourized git log
+alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # APACHE CONFIG
 alias hosts="subl /etc/hosts"
@@ -75,3 +116,7 @@ function hf {
     killall Finder
     echo "Files now hidden"
 }
+
+# Make NPM install in the home dir
+export PATH="$PATH:$HOME/npm/bin"
+export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
