@@ -117,6 +117,10 @@ function hf {
     echo "Files now hidden"
 }
 
+# PYTHON
+# start a server in the cwd
+alias startServer="python -m SimpleHTTPServer 8080"
+
 # Make NPM install in the home dir
 export PATH="$PATH:$HOME/npm/bin"
 export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
