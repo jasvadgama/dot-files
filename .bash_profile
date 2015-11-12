@@ -84,9 +84,9 @@ function gt {
 }
 # list local branches
 alias gb="git branch"
-# create and switch to a new branch - % git branch -b new_branch source_branch
+# create and switch to a new branch - % git checkout -b new_branch source_branch
 function gcb {
-    git branch -b $@
+    git checkout -b $@
 }
 # switch branch - % git checkout branch
 function gsb {
