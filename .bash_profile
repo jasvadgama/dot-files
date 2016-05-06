@@ -92,6 +92,10 @@ function gcb {
 function gsb {
     git checkout $@
 }
+# safe merge a branch - % git merge --no-commit --no-ff branch
+function gsm {
+    git merge --no-commit --no-ff $@
+}
 # export zipfile - % git archive --format zip --output filename.zip branch
 function gitzip {
     git archive --format zip --output $1.zip $2
@@ -117,10 +121,11 @@ function hf {
     echo "Files now hidden"
 }
 
-# PYTHON
-# start a server in the cwd
-alias startServer="python -m SimpleHTTPServer 8080"
-
+# NPM
 # Make NPM install in the home dir
 export PATH="$PATH:$HOME/npm/bin"
 export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
+
+# PYTHON
+# start a server in the cwd
+alias startServer="python -m SimpleHTTPServer 8080"
