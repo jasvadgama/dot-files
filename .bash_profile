@@ -82,6 +82,8 @@ function gp {
 function gt {
     git tag -a $1 -m "${2}"
 }
+# push tags to origin
+alias gptags="git push origin --tags"
 # list local branches
 alias gb="git branch"
 # create and switch to a new branch - % git checkout -b new_branch source_branch
@@ -91,6 +93,10 @@ function gcb {
 # switch branch - % git checkout branch
 function gsb {
     git checkout $@
+}
+# safe merge a branch - % git merge --no-commit --no-ff branch
+function gsm {
+    git merge --no-commit --no-ff $@
 }
 # export zipfile - % git archive --format zip --output filename.zip branch
 function gitzip {
@@ -121,6 +127,15 @@ function hf {
 # start a server in the cwd
 alias startServer="python -m SimpleHTTPServer 8080"
 
+# Android SDK
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/tools:$PATH"
+
+# NPM
 # Make NPM install in the home dir
 export PATH="$PATH:$HOME/npm/bin"
 export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
+
+# PATH
+# mongodb
+export PATH=/usr/local/mongodb/bin:$PATH
