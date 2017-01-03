@@ -19,9 +19,9 @@ function zipup {
     FILES=$@
     tar -cvzf $ARCHIVE $FILES
 }
-# unzip an archive - % unzip archive.zip
+# unzip an archive - % unzip archive.zip -C ./path/to/folder/
 function unzip {
-    tar -xvzf $1
+    tar -xvzf $1 -C $2
 }
 
 # TERMINAL TOOLS
@@ -106,8 +106,8 @@ function gitzip {
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # APACHE CONFIG
-alias hosts="subl /etc/hosts"
-alias vhosts="subl /etc/apache2/extra/httpd-vhosts.conf"
+alias hosts="sudo code /etc/hosts"
+alias vhosts="sudo code /etc/apache2/extra/httpd-vhosts.conf"
 
 # FINDER
 # show hidden files
@@ -129,7 +129,7 @@ alias startServer="python -m SimpleHTTPServer 8080"
 
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$ANDROID_HOME/tools:$PATH"
+export PATH="$PATH:$ANDROID_HOME/tools"
 
 # NPM
 # Make NPM install in the home dir
@@ -138,4 +138,4 @@ export NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules"
 
 # PATH
 # mongodb
-export PATH=/usr/local/mongodb/bin:$PATH
+export PATH="$PATH:/usr/local/mongodb/bin"
