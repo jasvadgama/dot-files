@@ -4,6 +4,7 @@ export PS1="\u@\W: "
 # QUICK TASKS
 alias c="clear"
 alias ll="ls -lah"
+alias weather="curl -4 http://wttr.in/"
 
 # DIRECTORY LINKS
 alias ~="cd ~"
