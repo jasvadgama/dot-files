@@ -99,6 +99,10 @@ function gsb {
 function gsm {
     git merge --no-commit --no-ff $@
 }
+# remove local branch-  - % git branch -D branch
+function gdb {
+    git branch -D $@
+}
 # export zipfile - % git archive --format zip --output filename.zip branch
 function gitzip {
     git archive --format zip --output $1.zip $2
@@ -123,6 +127,9 @@ function hf {
     killall Finder
     echo "Files now hidden"
 }
+
+# PHP7
+export PATH="/usr/local/php5-7.1.0-20161202-092124/bin:$PATH"
 
 # PYTHON
 # start a server in the cwd
