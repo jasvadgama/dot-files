@@ -109,6 +109,8 @@ function gitzip {
 }
 # colourized git log
 alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# delete local marged branches
+alias gbclean="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
 
 # APACHE CONFIG
 alias hosts="sudo code /etc/hosts"
