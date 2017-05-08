@@ -79,9 +79,9 @@ function gp {
     r=""
     b=""
 }
-# tag a branch - % git tag -a 1.0 -m "making a release"
+# tag a branch - % git tag -a 1.0
 function gt {
-    git tag -a $1 -m "${2}"
+    git tag -a $1
 }
 # push tags to origin
 alias gptags="git push origin --tags"
@@ -113,7 +113,7 @@ alias gl="git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgree
 alias gbclean="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
 
 # APACHE CONFIG
-alias hosts="sudo code /etc/hosts"
+alias hosts="sudo nano /etc/hosts"
 alias vhosts="sudo code /etc/apache2/extra/httpd-vhosts.conf"
 
 # FINDER
@@ -134,8 +134,25 @@ function hf {
 export PATH="/usr/local/php5-7.1.0-20161202-092124/bin:$PATH"
 
 # PYTHON
-# start a server in the cwd
-alias startServer="python -m SimpleHTTPServer 8080"
+# start a server in the cwd - % startServer -p 8080
+function startServer {
+    # grab the flags
+    while getopts ":p:" opt; do
+        case $opt in
+            p)
+                p=$OPTARG
+                ;;
+        esac
+    done
+
+    # if -p is not defined
+    if [ -z "${p}" ]; then
+        # default to origin
+        r="8080"
+    fi
+
+    python -m SimpleHTTPServer $p
+}
 
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
