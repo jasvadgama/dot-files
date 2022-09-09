@@ -126,47 +126,52 @@ function bulkrename {
 
 # GITHUB
 # git get (pull) - % git pull [remote branch]
-function gg {
-  git pull $@
-}
+alias gg="git pull"
 # list changes
 alias gs="git status"
 # add all files
 alias ga="git add -A"
-# push to remote
+# commit with message and optional flags (e.g. --no-verify)
+# % gc "chore: updating deps (WIP)" --no-verify
 function gc {
   git commit -m "${1}" $2
 }
-alias gp="git push" {
-# commit with message and optional flags (e.g. --no-verify)
+# push to remote
+alias gp="git push"
+
+# list local branches
+alias gb="git branch"
+# create and switch to a new branch - % git checkout -b new_branch source_branch
+# % gcb chore/update-deps main
+function gcb {
+  git checkout -b $@
+}
+# switch branch - % git checkout branch
+# gsb main
+function gsb {
+  git checkout $@
+}
+# safe merge a branch - % git merge --no-commit --no-ff branch
+# % gsm main
+function gsm {
+  git merge --no-commit --no-ff $@
+}
+# remove local branch - % git branch -D branch
+# % gdb chore/update-deps
+function gdb {
+  git branch -D $@
+}
 
 # tag a branch - % git tag -a 1.0
+# % gt 1.0.0 "Release"
 function gt {
   git tag -a $1 -m $2
 }
 # push tags to origin
 alias gptags="git push origin --tags"
-# list local branches
-alias gb="git branch"
-
-# create and switch to a new branch - % git checkout -b new_branch source_branch
-function gcb {
-  git checkout -b $@
-}
-# switch branch - % git checkout branch
-function gsb {
-  git checkout $@
-}
-# safe merge a branch - % git merge --no-commit --no-ff branch
-function gsm {
-  git merge --no-commit --no-ff $@
-}
-# remove local branch-  - % git branch -D branch
-function gdb {
-  git branch -D $@
-}
 
 # export zipfile - % git archive --format zip --output filename.zip branch
+# % gitzip main main
 function gitzip {
   git archive --format zip --output $1.zip $2
 }
