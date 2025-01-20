@@ -4,9 +4,9 @@
   // Enable coloured brackets
   "editor.bracketPairColorization.enabled": true,
   // fix any issues on save
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": "explicit"
+  // },
   // Font settings
   "editor.fontFamily": "Inconsolata",
   "editor.fontSize": 17,
@@ -21,9 +21,10 @@
   "editor.wordWrap": "on",
   // Automatically update extensions
   "extensions.autoUpdate": true,
-  // exclude node_modules from helper
+  // exclude from helper
   "files.exclude": {
     "**/.cache": true,
+    "**/.next": true,
     "**/bower_components": true,
     "**/cache": true,
     "**/jspm_packages": true,
@@ -37,16 +38,13 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   // Enable/disable JavaScript validation.
   "javascript.validate.enable": false,
-  // PHP formatting rules
-  // Should point to php-cs-fixer.phar file, if you have installed this manually (without Composer). Should include .phar extension.
-  "phpformatter.pharPath": "/usr/local/bin/php-cs-fixer",
-  "phpformatter.arguments": ["--level=psr2"],
   // Prettier
   // require a config file in order to run formatting rules
   "prettier.requireConfig": true,
   // Additional folders to exclude from file search
   "search.exclude": {
     "**/.cache": true,
+    "**/.next": true,
     "**/build": true,
     "**/build-server": true,
     "**/cache": true,
@@ -57,7 +55,7 @@
   // Controls if a window should restore to full screen mode if it was exited in full screen mode.
   "window.restoreFullscreen": true,
   // Editor theme
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Night Owl (No Italics)",
   // Make sidebar jump to active file
   "workbench.editor.revealIfOpen": true,
   // Sidebar icon theme
@@ -77,31 +75,29 @@
   // Prettier formatting per-language on save
   "[javascript]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
   },
-  "[typescript]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[dart]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
-    "editor.rulers": [80],
-    "editor.selectionHighlight": false,
-    "editor.suggest.snippetsPreventQuickSuggestions": false,
-    "editor.suggestSelection": "first",
-    "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": false
-  },
-  "dart.openDevTools": "flutter",
-  "terminal.integrated.persistentSessionReviveProcess": "never",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+  },
+  "terminal.integrated.persistentSessionReviveProcess": "never",
   "window.confirmBeforeClose": "keyboardOnly",
   "diffEditor.ignoreTrimWhitespace": false,
   "window.zoomLevel": -1

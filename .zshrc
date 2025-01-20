@@ -225,10 +225,14 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 export NODE_PATH="$NODE_PATH:$HOME/.npm-global/lib/node_modules"
 # export NODE_ENV=development
 
-# PATH
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+# pnpm
+export PNPM_HOME="/Users/jasalvadgama/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
-# Add Flutter to PATH
-export PATH="$PATH:/Users/jasalvadgama/Sites/flutter/bin"
+# homebrew
+export PATH=$PATH:/opt/homebrew/bin
+# homebrew end
